@@ -31,9 +31,6 @@ DEBS= $(INC_FILES) makefile
 
 PORT=/dev/ttyUSB1
 
-debug:
-	echo $(OBJ)
-
 all: setup $(ELF_FILE) $(LST_FILE) $(HEX_FILE)
 
 $(ELF_FILE): $(OBJ)

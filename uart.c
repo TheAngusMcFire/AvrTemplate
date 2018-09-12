@@ -33,6 +33,8 @@ ISR(USART_RX_vect)
 {
     if(uart_rcv_int_funct != 0)
         uart_rcv_int_funct();
+
+    (void)UDR0; //clear interrupt if not handled in isr    
 }
 
 

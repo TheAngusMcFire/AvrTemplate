@@ -1,6 +1,7 @@
 
 //this is just to make sure VS code does not highlight all of the SFRs and stuff
 
+//change this of differend CPUs otherwise it will not build
 #ifndef __AVR_ATmega328P__
 #define __AVR_ATmega328P__
 #endif
