@@ -14,14 +14,20 @@ MAP_FILE = $(FILE_NAME).map
 
 CPU=atmega328p
 
-CFLAGS = -Wall -O0 -mmcu=$(CPU) -I./ -DWHO_AM_I=\"$(FILE_NAME)\"
+CFLAGS = -Wall -O0 -mmcu=$(CPU) -I./ -I./perif -DWHO_AM_I=\"$(FILE_NAME)\"
 
 SRC_FILES_C = $(wildcard *.c)
 SRC_FILES_ASM += $(wildcard *.asm)
 SRC_FILES_CPP += $(wildcard *.cpp)
 
+SRC_FILES_C += $(wildcard perif/*.c)
+SRC_FILES_ASM += $(wildcard perif/*.asm)
+SRC_FILES_CPP += $(wildcard perif/*.cpp)
+
 INC_FILES = $(wildcard *.h)
 INC_FILES += $(wildcard *.hpp)
+INC_FILES += $(wildcard perif/*.h)
+INC_FILES += $(wildcard perif/*.hpp)
 
 OBJ = $(patsubst %.c, $(OUT_FOLDER)/%.o, $(SRC_FILES_C))
 OBJ += $(patsubst %.asm, $(OUT_FOLDER)/%.o, $(SRC_FILES_ASM))
@@ -57,12 +63,13 @@ download: $(HEX_FILE)
 rebuild: clean all
 
 clean:
-	rm -rf $(OUT_FOLDER)/* *.elf *.lst *.img *.map *.hex
+	rm -rf $(OUT_FOLDER)/* $(OUT_FOLDER)/perif/* *.elf *.lst *.img *.map *.hex
 
 install_dep:
 	sudo apt install avr-libc avrdude
 
-setup: $(OUT_FOLDER)
+setup: $(OUT_FOLDER)/perif
 
-$(OUT_FOLDER):
-	mkdir $(OUT_FOLDER)
+$(OUT_FOLDER)/perif:
+	mkdir -p $(OUT_FOLDER)
+	mkdir -p $(OUT_FOLDER)/perif
