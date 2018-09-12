@@ -46,6 +46,7 @@
 *.hex
 out
 .vscode
+*.lst
 
 
 # Kernel Module Compile Results
