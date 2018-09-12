@@ -15,13 +15,14 @@ enum TIMER_DIVIDER
     TIMER_CLK_EXT_RISING = 7
 };
 
-
-extern inline void timerStart();
-extern inline void timerStop();
-extern inline void timerSetValue(uint16_t value);
+void timerStart();
+void timerStop();
+void timerSetValue(uint16_t value);
 
 void timerInit();
 void timerSetValue(uint16_t value);
 void timerRegisterInterrupt(void (*ptr) ());
+
+
 
 #endif

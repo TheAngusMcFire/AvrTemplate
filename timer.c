@@ -16,17 +16,17 @@ void timerInit()
     timerStart();
 }
 
-inline void timerStart()
+void timerStart()
 {
     TCCR1B = TIMER_CLK_DIV1024;
 }
 
-inline void timerStop()
+void timerStop()
 {
     TCCR1B = TIMER_CLK_STOP;
 }
 
-inline void timerSetValue(uint16_t value)
+void timerSetValue(uint16_t value)
 {
     TCNT1 = value;
 }
