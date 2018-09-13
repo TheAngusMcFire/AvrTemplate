@@ -20,14 +20,14 @@ SRC_FILES_C = $(wildcard *.c)
 SRC_FILES_ASM += $(wildcard *.asm)
 SRC_FILES_CPP += $(wildcard *.cpp)
 
-SRC_FILES_C += $(wildcard perif/*.c)
-SRC_FILES_ASM += $(wildcard perif/*.asm)
-SRC_FILES_CPP += $(wildcard perif/*.cpp)
+SRC_FILES_C += $(wildcard lib_src/*.c)
+SRC_FILES_ASM += $(wildcard lib_src/*.asm)
+SRC_FILES_CPP += $(wildcard lib_src/*.cpp)
 
 INC_FILES = $(wildcard *.h)
 INC_FILES += $(wildcard *.hpp)
-INC_FILES += $(wildcard perif/*.h)
-INC_FILES += $(wildcard perif/*.hpp)
+INC_FILES += $(wildcard lib_src/*.h)
+INC_FILES += $(wildcard lib_src/*.hpp)
 
 OBJ = $(patsubst %.c, $(OUT_FOLDER)/%.o, $(SRC_FILES_C))
 OBJ += $(patsubst %.asm, $(OUT_FOLDER)/%.o, $(SRC_FILES_ASM))
@@ -57,19 +57,19 @@ $(LST_FILE): $(ELF_FILE)
 $(HEX_FILE): $(ELF_FILE)
 	$(CC)-objcopy -O ihex -R .eeprom $(ELF_FILE) $(HEX_FILE)
 
-download: $(HEX_FILE)
+download: all
 	avrdude -v -patmega328p -carduino -P$(PORT) -b57600 -D -Uflash:w:$(HEX_FILE):i 
 
 rebuild: clean all
 
 clean:
-	rm -rf $(OUT_FOLDER)/* $(OUT_FOLDER)/perif/* *.elf *.lst *.img *.map *.hex
+	rm -rf $(OUT_FOLDER)/* $(OUT_FOLDER)/lib_src/* *.elf *.lst *.img *.map *.hex
 
 install_dep:
 	sudo apt install avr-libc avrdude
 
-setup: $(OUT_FOLDER)/perif
+setup: $(OUT_FOLDER)/lib_src
 
-$(OUT_FOLDER)/perif:
+$(OUT_FOLDER)/lib_src:
 	mkdir -p $(OUT_FOLDER)
-	mkdir -p $(OUT_FOLDER)/perif
+	mkdir -p $(OUT_FOLDER)/lib_src

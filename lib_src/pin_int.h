@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #ifndef PIN_INT_H
 #define PIN_INT_H
 

@@ -11,12 +11,16 @@ ISR(INT0_vect)
 {
 	if(ext_pin0_int_funct != 0)
         ext_pin0_int_funct();
+
+        EIFR |= _BV(INTF0); //clear interrupt
 }
 
 ISR(INT1_vect)
 {
 	if(ext_pin1_int_funct != 0)
         ext_pin1_int_funct();
+
+        EIFR |= _BV(INTF1); //clear interrupt
 }
 
 void pinInt0RegisterInterrupt(void (*ptr)(), uint8_t pin_change_setting)
