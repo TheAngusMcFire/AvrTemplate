@@ -14,7 +14,7 @@ MAP_FILE = $(FILE_NAME).map
 
 CPU=atmega328p
 
-CFLAGS = -Wall -O0 -mmcu=$(CPU) -I./ -I./perif -DWHO_AM_I=\"$(FILE_NAME)\"
+CFLAGS = -Wall -O0 -mmcu=$(CPU) -I./ -I./lib_src -DWHO_AM_I=\"$(FILE_NAME)\"
 
 SRC_FILES_C = $(wildcard *.c)
 SRC_FILES_ASM += $(wildcard *.asm)
