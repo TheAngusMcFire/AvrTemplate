@@ -21,8 +21,8 @@ void timerSetValue(uint16_t value);
 
 void timerInit();
 void timerSetValue(uint16_t value);
+uint16_t timerGetValue();
 void timerRegisterInterrupt(void (*ptr) ());
-
 
 
 #endif

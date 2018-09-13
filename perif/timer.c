@@ -31,6 +31,11 @@ void timerSetValue(uint16_t value)
     TCNT1 = value;
 }
 
+uint16_t timerGetValue()
+{
+    return TCNT1;
+}
+
 void timerRegisterInterrupt(void (*ptr) ())
 {
     timer_overflow_int_funct = ptr;

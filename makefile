@@ -35,7 +35,7 @@ OBJ += $(patsubst %.cpp, $(OUT_FOLDER)/%.o, $(SRC_FILES_CPP))
 
 DEBS= $(INC_FILES) makefile
 
-PORT=/dev/ttyUSB1
+PORT=/dev/ttyUSB0
 
 all: setup $(ELF_FILE) $(LST_FILE) $(HEX_FILE)
 
