@@ -13,4 +13,4 @@ use *make install* to install the build tools
 ### For Windows
 The Compiler from the Arduino zip file works perfectly.
 Use the make.exe from cygwin64 package
-Add both to the Windows Path this shoud be all to get it building. 
+Add both to the Windows Path this should be all to get it building. 
