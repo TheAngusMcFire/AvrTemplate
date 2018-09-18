@@ -18,9 +18,9 @@ static void __attribute__((optimize("O4"))) delayUs(uint8_t delay)
     delay--;
     do
     {
-        asm volatile("nop\n nop\n nop\n nop\n");
-        asm volatile("nop\n nop\n nop\n nop\n");
-        asm volatile("nop\n nop\n nop\n nop\n");
+        __asm volatile("nop\n nop\n nop\n nop\n");
+        __asm volatile("nop\n nop\n nop\n nop\n");
+        __asm volatile("nop\n nop\n nop\n nop\n");
     } while (delay--);
 }
 

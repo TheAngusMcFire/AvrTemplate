@@ -14,7 +14,7 @@ MAP_FILE = $(FILE_NAME).map
 
 CPU=atmega328p
 
-CFLAGS = -Wall -O0 -mmcu=$(CPU) -I./ -I./lib_src -DWHO_AM_I=\"$(FILE_NAME)\"
+CFLAGS = -Wall -O0 -mmcu=$(CPU) -I. -I./lib_src -DWHO_AM_I=\"$(FILE_NAME)\" -std=c11
 
 SRC_FILES_C = $(wildcard *.c)
 SRC_FILES_ASM += $(wildcard *.asm)
@@ -66,7 +66,7 @@ clean:
 	rm -rf $(OUT_FOLDER)/* $(OUT_FOLDER)/lib_src/* *.elf *.lst *.img *.map *.hex
 
 install_dep:
-	sudo apt install avr-libc avrdude
+	sudo apt install avr-libc avrdude build-essential 
 
 setup: $(OUT_FOLDER)/lib_src
 

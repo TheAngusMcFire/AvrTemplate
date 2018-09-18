@@ -40,7 +40,7 @@ uint16_t adcGetValue(uint8_t channel)
     ADCSRA |= _BV(ADSC);
 
     while (ADCSRA & _BV(ADSC))
-        asm volatile("nop");
+        __asm volatile("nop");
     
     return ADCW;
 }

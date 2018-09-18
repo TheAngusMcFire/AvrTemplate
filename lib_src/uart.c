@@ -48,7 +48,7 @@ void uartInit(uint16_t ubrr_value)
 void uartWriteChar(char chr)
 {
     while (!(UCSR0A & _BV(UDRE0)))
-        asm volatile ("nop");
+        __asm volatile ("nop");
         
     UDR0 = chr;
 }
@@ -62,7 +62,7 @@ void uartWriteString(const char* str)
 char uartGetChar()
 {  
     while (!(UCSR0A & _BV(RXC0)))
-        asm volatile ("nop");
+        __asm volatile ("nop");
     
     return UDR0;
 }

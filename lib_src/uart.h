@@ -8,18 +8,18 @@
 
 //minus 4 clocks because the 16 bit decrement
 #define ONE_US_AT16MHZ \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
-        asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
+        __asm volatile ("nop"); \
 
 
 void uartRegisterInterrupt(void (*ptr) ());
