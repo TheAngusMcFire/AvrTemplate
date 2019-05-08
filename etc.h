@@ -17,6 +17,9 @@
 #define WHO_AM_I "TEMPLATE"
 #endif
 
+#include<stdio.h>
+
+#define assert(cond) if(cond){printf("%s:%u \n%s",__FILE__,__LINE__, #cond); while(1);} 
 
 enum IO_PORTS
 {

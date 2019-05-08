@@ -86,7 +86,7 @@ uint8_t isPulse(uint16_t pulse, uint16_t min, uint16_t threshold)
 
 uint8_t decode_frames(uint8_t* buff, uint16_t max, uint16_t min, uint16_t number)
 {
-    (void)max;
+    (void)max; /* to get rid of the compiler warning */
 
     if(number % 8 != 0)
         return pulses_cnt;
