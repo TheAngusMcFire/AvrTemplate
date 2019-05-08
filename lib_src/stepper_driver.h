@@ -1,6 +1,7 @@
 #ifndef LIB_SRC_STEPPER_DRIVER_H
 #define LIB_SRC_STEPPER_DRIVER_H
 
+#include <etc.h>
 #include <stdint.h>
 #include <util/delay.h>
 
