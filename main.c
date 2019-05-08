@@ -19,6 +19,7 @@ static FILE mystdout = FDEV_SETUP_STREAM(usart_putchar_printf, NULL, _FDEV_SETUP
 
 int usart_putchar_printf(char var, FILE *stream) 
 {
+    (void)stream;
     if (var == '\n') uartWriteChar('\r');
     uartWriteChar(var);
     return 0;
@@ -33,6 +34,7 @@ void uart_rcv_event()
 
 void adc_fin_event(uint16_t adc_value)
 {
+    (void)adc_value;
     uartWriteString("\nThis is the ADC interrupt handler"
                     "\n");
 }
