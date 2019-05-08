@@ -15,6 +15,8 @@ int16_t turnStepperMotor(uint16_t stepper_id, uint8_t direction, uint32_t num_st
         *(stepper_inst->port_direction) |= (1 << stepper_inst->pin_direction);
     else if (direction == DIR_RIGHT)
         *(stepper_inst->port_direction) &= ~(1 << stepper_inst->pin_direction);
+    else 
+        return -1;
 
     while(num_steps--)
     {
