@@ -1,12 +1,28 @@
 #include <etc.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 #include <uart.h>
 #include <adc.h>
 #include <timer.h>
 #include <pin_int.h>
 #include <soft_uart.h>
+#include <ir.h>
+
+int usart_putchar_printf(char var, FILE *stream);
+
+static FILE mystdout = FDEV_SETUP_STREAM(usart_putchar_printf, NULL, _FDEV_SETUP_WRITE);
+
+int usart_putchar_printf(char var, FILE *stream) 
+{
+    if (var == '\n') uartWriteChar('\r');
+    uartWriteChar(var);
+    return 0;
+}
 
 void uart_rcv_event()
 {
@@ -51,6 +67,7 @@ void init()
     PORTB |= _BV(5);
 
     uartInit(103);
+    stdout = &mystdout;
     adcInit();
     timerInit();
     //the softuart is tested for speeds up to 38400 baut 
@@ -71,7 +88,7 @@ int main(void)
 {
     init();
 
-    uartWriteString("Hello this is the " WHO_AM_I "\n");
+    printf("Hello this is the " WHO_AM_I "\n");
 
     while (1)
     {

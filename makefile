@@ -14,7 +14,7 @@ MAP_FILE = $(FILE_NAME).map
 
 CPU=atmega328p
 
-CFLAGS = -Wall -O0 -mmcu=$(CPU) -I. -I./lib_src -DWHO_AM_I=\"$(FILE_NAME)\" -std=c11
+CFLAGS = -Wall -O2 -mmcu=$(CPU) -I. -I./lib_src -DWHO_AM_I=\"$(FILE_NAME)\" -std=c11
 
 SRC_FILES_C = $(wildcard *.c)
 SRC_FILES_ASM += $(wildcard *.asm)
@@ -37,7 +37,10 @@ DEBS= $(INC_FILES) makefile
 
 PORT=/dev/ttyUSB0
 
-all: setup $(ELF_FILE) $(LST_FILE) $(HEX_FILE)
+all: setup $(ELF_FILE) $(LST_FILE) $(HEX_FILE) print_stats
+
+print_stats: $(ELF_FILE)
+	$(CC)-size $(ELF_FILE)
 
 $(ELF_FILE): $(OBJ)
 	$(CC)-gcc  $(OBJ) $(CFLAGS) -Wl,-Map=$(MAP_FILE) -o $(ELF_FILE)
