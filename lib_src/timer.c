@@ -7,7 +7,7 @@ static void (*timer_overflow_int_funct) () = 0;
 
 ISR(TIMER1_OVF_vect) 
 {
-	if(timer_overflow_int_funct != 0)
+    if(timer_overflow_int_funct != 0)
         timer_overflow_int_funct();
 }
 
