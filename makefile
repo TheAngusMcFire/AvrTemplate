@@ -36,6 +36,7 @@ OBJ += $(patsubst %.cpp, $(OUT_FOLDER)/%.o, $(SRC_FILES_CPP))
 DEBS= $(INC_FILES) makefile
 
 PORT=/dev/ttyUSB0
+SPEED=57600
 
 all: setup $(ELF_FILE) $(LST_FILE) $(HEX_FILE) print_stats
 
@@ -60,8 +61,13 @@ $(LST_FILE): $(ELF_FILE)
 $(HEX_FILE): $(ELF_FILE)
 	$(CC)-objcopy -O ihex -R .eeprom $(ELF_FILE) $(HEX_FILE)
 
-download: all
-	avrdude -v -patmega328p -carduino -P$(PORT) -b57600 -D -Uflash:w:$(HEX_FILE):i 
+download_file:
+	avrdude -v -patmega328p -carduino -P$(PORT) -b$(SPEED) -D -Uflash:w:$(HEX_FILE):i 
+
+download: all download_file set_speed
+
+set_speed:
+	stty -F $(PORT) speed $(SPEED) cs8 -cstopb 
 
 rebuild: clean all
 
