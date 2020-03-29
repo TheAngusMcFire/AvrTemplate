@@ -4,7 +4,7 @@
 
 #include <stdint.h>
 
-#define UBBR_VALUE(baut_rate) ((F_CPU / (16 * baut_rate)) -1)
+#define UBBR_VALUE(baut_rate) ((F_CPU / (16UL * baut_rate)) -1UL)
 
 //minus 4 clocks because the 16 bit decrement
 #define ONE_US_AT16MHZ \
@@ -24,7 +24,7 @@
 
 void uartRegisterInterrupt(void (*ptr) ());
 
-void uartInit();
+void uartInit(uint16_t);
 void uartWriteChar(char chr);
 void uartWriteString(const char* str);
 
