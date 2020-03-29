@@ -12,6 +12,7 @@
 #include <pin_int.h>
 #include <soft_uart.h>
 #include <ir.h>
+#include <spi.h>
 
 int usart_putchar_printf(char var, FILE *stream);
 
@@ -70,6 +71,7 @@ void init()
     stdout = &mystdout;
     adcInit();
     timerInit();
+    //spiInit();
     //the softuart is tested for speeds up to 38400 baut 
     softUartInit(SOFT_UART_BAUT_TO_US(9600));
 
